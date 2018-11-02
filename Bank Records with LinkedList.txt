@@ -1,0 +1,136 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+struct node* createnode(struct node*);
+void display(struct node*);
+void search(struct node*);
+void delete1(struct node** prev);
+struct node
+{
+char name[10],acctype[10];
+int accno;
+float bal;
+struct node* ptr;
+};
+int main()
+{
+struct node* head;
+int b,i;
+char ch[100];
+head=NULL;
+while(1)
+{
+printf("Select Your Choice : \n1-> Enter the Customer Details \n2-> Display Customer Database \n3-> Search for a Customer Database \n4->Delete a Customer Database\n5-> Exit\n");
+scanf("%d",&b);
+switch(b)
+{
+case (1): printf("Enter the number of Customer details you would like to Input : ");
+          scanf("%d",&i);
+   while(i>0)
+   {
+   head=createnode(head);
+   i--;
+   }
+   break;
+
+case (2): display(head);
+          break;
+
+case (3): search(head);
+          break;
+case 4:   delete1(&head);
+          break;
+case 5:exit(0);
+default:printf("Invalid choice,Please Re-enter\n");
+}
+}
+}
+void display(struct node* head)
+{
+if(head==NULL)
+{
+printf("Details are empty \n");
+}
+else
+{
+while(head!=NULL)
+{
+printf("The name of the Customer is %s\n",head->name);
+printf("The account type is(Savings/Current) %s\n",head->acctype);
+printf("The account balance is : is %f\n",head->bal);
+printf("Account number  is %d\n",head->accno);
+printf("----------------------------------------------------------------------------------\n");
+head=head->ptr;
+}
+}
+}
+struct node* createnode(struct node* head)
+{
+struct node* newnode;
+newnode=(struct node*)malloc(sizeof (struct node));
+printf("Enter the Customer name : ");
+scanf("%s",newnode->name);
+printf("Enter the Account type(Savings/Current): ");
+scanf("%s",newnode->acctype);
+printf("Enter the balance amount : ");
+scanf("%f",&newnode->bal);
+printf("Enter the account number : ");
+scanf("%d",&newnode->accno);
+if(newnode == NULL)
+{
+newnode->ptr=NULL;
+}
+else
+{
+newnode->ptr=head;
+}
+return newnode;
+}
+void search(struct node* head)
+{
+char ch[10];
+printf("Enter the Customer name : ");
+scanf("%s",ch);
+while(head!=NULL)
+{
+if(strcmp(ch,head->name)==0)
+{
+printf("The name is matched\n");
+printf("The balance amount is : %f\n",head->bal);
+}
+else
+{
+printf("The name is not matched\n");
+}
+head=head->ptr;
+}
+}
+void delete1(struct node** prev)
+{
+    char ch[10];
+printf("Enter the  Customer name : ");
+scanf("%s",ch);
+if(strcmp(ch,(*prev)->name)==0)
+{
+*prev=(*prev)->ptr;
+return;
+
+struct node*temp=(*prev)->ptr;
+struct node* temp1=(*prev);
+while(temp!=NULL)
+{
+if(strcmp(ch,temp->name)==0)
+{
+    temp1->ptr=temp->ptr;
+    free(temp);
+	return;
+}
+temp=temp->ptr;
+temp1=temp1->ptr;
+}
+printf("%s is deleted \n",ch );
+}
+else {
+  printf("%s not found \n",ch );
+}
+}

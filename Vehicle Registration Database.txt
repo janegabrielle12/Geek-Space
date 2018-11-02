@@ -1,0 +1,140 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+struct node* createnode(struct node*);
+void display(struct node*);
+void search(struct node*);
+void delete1(struct node** prev);
+struct node
+{
+char name[10],vn[10],vs[50];
+int vrn;
+
+struct node* ptr;
+};
+int main()
+{
+struct node* head;
+int b,i;
+char ch[100];
+head=NULL;
+while(1)
+{
+printf("Select Your Choice : \n1-> Enter the vehicle details \n2-> Display vehicle Database \n3-> Search for a vehicle record \n4->Delete a vehicle record\n5-> Exit\n");
+scanf("%d",&b);
+switch(b)
+{
+case (1): printf("Enter the number of vehicle details you would like to Input : ");
+          scanf("%d",&i);
+   while(i>0)
+   {
+   head=createnode(head);
+   i--;
+   }
+   break;
+
+case (2): display(head);
+          break;
+
+case (3): search(head);
+          break;
+case 4:   delete1(&head);
+          break;
+case 5:exit(0);
+default:printf("Invalid choice,Please Re-enter\n");
+}
+}
+}
+void display(struct node* head)
+{
+if(head==NULL)
+{
+printf("Details are empty \n");
+}
+else
+{
+while(head!=NULL)
+{
+printf("The name of the owner is: %s\n",head->name);
+printf("The vehicle number is: %s\n",head->vn);
+printf("The vehicle registration number is :  %d\n",head->vrn);
+printf("State in which vehicle was purchased from: %s\n",head->vs);
+printf("----------------------------------------------------------------------------------\n");
+head=head->ptr;
+}
+}
+}
+struct node* createnode(struct node* head)
+{
+struct node* newnode;
+newnode=(struct node*)malloc(sizeof (struct node));
+printf("The name of the owner is: ");
+scanf("%s",newnode->name);
+printf("The vehicle number is: ");
+scanf("%s",newnode->vn);
+printf("The vehicle registration number is : ");
+scanf("%d",&newnode->vrn);
+printf("State in which vehicle was purchased from  : ");
+scanf("%s",&newnode->vs);
+if(newnode == NULL)
+{
+newnode->ptr=NULL;
+}
+else
+{
+newnode->ptr=head;
+}
+return newnode;
+}
+
+
+void search(struct node* head)
+{
+char ch[10];
+printf("Enter the name of the owner : ");
+scanf("%s",ch);
+while(head!=NULL)
+{
+if(strcmp(ch,head->name)==0)
+{
+printf("The name is matched\n");
+printf("The vehicle number is : %s\n",head->vn);
+}
+else
+{
+printf("The name is not matched\n");
+}
+head=head->ptr;
+}
+}
+
+
+void delete1(struct node** prev)
+{
+    char ch[10];
+printf("Enter the owner name : ");
+scanf("%s",ch);
+if(strcmp(ch,(*prev)->name)==0)
+{
+*prev=(*prev)->ptr;
+return;
+
+struct node*temp=(*prev)->ptr;
+struct node* temp1=(*prev);
+while(temp!=NULL)
+{
+if(strcmp(ch,temp->name)==0)
+{
+    temp1->ptr=temp->ptr;
+    free(temp);
+	return;
+}
+temp=temp->ptr;
+temp1=temp1->ptr;
+}
+printf("%s is deleted \n",ch );
+}
+else {
+  printf("%s not found \n",ch );
+}
+}

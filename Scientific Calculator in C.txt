@@ -1,0 +1,150 @@
+/******************************************************************************
+
+                            Online C Compiler.
+                Code, Compile, Run and Debug C program online.
+Write your code in this editor and press "Run" button to compile and execute it.
+
+*******************************************************************************/
+
+#include <stdio.h>
+/******************************************************************************
+
+                            Online C Compiler.
+                Code, Compile, Run and Debug C program online.
+Write your code in this editor and press "Run" button to compile and execute it.
+
+*******************************************************************************/
+#include <stdio.h>
+#include <conio.h>
+#include <math.h>
+
+int main(void) {
+int choice, i, a, b;
+float x, y, result;
+clrscr();
+do {
+printf("\nSelect your operation (0 to exit):\n");
+printf("\n1. Addition  \n2. Subtraction   \n3. Multiplication    \n4. Division\n");
+printf("\n5. Square    \n6.Square Root     \n7. Factorial         \n8.Raise to the Power \n");
+printf("\n9. Sin(X)    \n10. Cos(X)         \n11. Tan(X)           \n12.Inverse\n");
+printf("\n13. Logarithm\n");
+printf("\nChoice: ");
+scanf("%d", &choice);
+if(choice == 0) exit(0);
+
+switch(choice) {
+case 1:
+printf("Enter X: ");
+scanf("%f", &x);
+printf("\nEnter Y: ");
+scanf("%f", &y);
+result = x + y;
+printf("\nResult: %f", result);
+break;
+
+case 2:
+printf("Enter X: ");
+scanf("%f", &x);
+printf("\nEnter Y:");
+scanf("%f", &y);
+result = x-y;
+printf("\nResult: %f", result);
+break;
+
+case 3:
+printf("Enter X: ");
+scanf("%f", &x);
+printf("\nEnter Y:" );
+scanf("%f", &y);
+result = x * y;
+printf("\nResult: %f", result);
+break;
+
+case 4:
+printf("Enter X: ");
+scanf("%f", &x);
+printf("\nEnter Y: ");
+scanf("%f", &y);
+result = x / y;
+printf("\nResult: %f", result);
+break;
+
+case 5:
+printf("Enter X: ");
+scanf("%f", &x);
+result = x*x;
+printf("\nResult: %f", result);
+break;
+
+
+case 6:
+printf("Enter X: ");
+scanf("%f", &x);
+result = sqrt(x);
+printf("\nResult: %f", result);
+break;
+
+case 7:
+printf("Enter X: ");
+scanf("%f", &x);
+result = 1;
+for(i = 1; i <= x; i++) {
+result = result * i;
+}
+printf("\nResult: %.f", result);
+break;
+
+case 8:
+printf("Enter X:");
+scanf("%f", &x);
+printf("\nEnter Y:");
+scanf("%f", &y);
+result = pow(x, y);
+printf("\nResult: %f", result);
+break;
+
+case 9:
+printf("Enter X: ");
+scanf("%f", &x);
+result = sin(x * 3.14159 / 180);
+printf("\nResult: %.2f", result);
+break;
+
+case 10:
+printf("Enter X:" );
+scanf("%f", &x);
+result = cos(x * 3.14159 / 180);
+printf("\nResult: %.2f", result);
+break;
+
+case 11:
+printf("Enter X:");
+scanf("%f", &x);
+result = tan(x * 3.14159 / 180);
+printf("\nResult: %.2f", result);
+break;
+
+case 12:
+printf("Enter X: ");
+scanf("%f", &x);
+result = pow(x, -1);
+printf("\nResult: %f", result);
+break;
+
+case 13:
+printf("Enter X: ");
+scanf("%f", &x);
+result = log10(x);
+printf("\nResult: %.2f", result);
+break;
+
+default:
+printf("\nInvalid Choice! ");
+}
+} while(choice);
+getch();
+return 0;
+}
+
+
+
